@@ -37,4 +37,10 @@ public class DadoController {
 
         return new ResponseEntity(dadoService.buscaDados(),HttpStatus.OK);
     }
+
+    @GetMapping("buscaDatas")
+    public ResponseEntity buscaEntreDatas(List<String> datas) {
+
+        return new ResponseEntity(dadoService.buscaEntreDatas(datas),HttpStatus.OK);
+    }
 }
