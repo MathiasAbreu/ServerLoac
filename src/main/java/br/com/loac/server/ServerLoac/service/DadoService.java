@@ -5,6 +5,7 @@ import br.com.loac.server.ServerLoac.entitie.Dado;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class DadoService {
@@ -25,5 +26,10 @@ public class DadoService {
             return true;
 
         return false;
+    }
+
+    public List<Dado> buscaDados() {
+
+        return dadoRepository.findAll();
     }
 }
