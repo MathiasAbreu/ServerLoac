@@ -38,8 +38,11 @@ public class DadoService {
 
     public List<Dado> buscaEntreDatas(String[] datas) {
 
-        int diaInicial = Integer.parseInt(datas[0]);
-        int diaFinal = Integer.parseInt(datas[1]);
+        String[] dataInicial = datas[0].split("-");
+        String[] dataFinal = datas[1].split("-");
+
+        int diaInicial = Integer.parseInt(dataInicial[2]);
+        int diaFinal = Integer.parseInt(dataFinal[2]);
 
         List<Dado> dados = dadoRepository.findAll();
         Collections.sort(dados, new ComparadorPorData());
