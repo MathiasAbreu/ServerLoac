@@ -4,10 +4,7 @@ import br.com.loac.server.ServerLoac.entitie.Dado;
 import br.com.loac.server.ServerLoac.service.DadoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,9 +35,9 @@ public class DadoController {
         return new ResponseEntity(dadoService.buscaDados(),HttpStatus.OK);
     }
 
-    @GetMapping("buscaDatas")
-    public ResponseEntity buscaEntreDatas(List<String> datas) {
+    @GetMapping("buscaDatas/{dataInicio_dataFinal}")
+    public ResponseEntity buscaEntreDatas(@RequestParam String dataInicio_dataFinal) {
 
-        return new ResponseEntity(dadoService.buscaEntreDatas(datas),HttpStatus.OK);
+        return new ResponseEntity(dadoService.buscaEntreDatas(dataInicio_dataFinal.split("_")),HttpStatus.OK);
     }
 }

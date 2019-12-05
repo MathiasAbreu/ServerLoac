@@ -2,6 +2,7 @@ package br.com.loac.server.ServerLoac.service;
 
 import br.com.loac.server.ServerLoac.dao.DadoDao;
 import br.com.loac.server.ServerLoac.entitie.Dado;
+import br.com.loac.server.ServerLoac.service.comparator.ComparadorPorData;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,18 +36,17 @@ public class DadoService {
         return dadoRepository.findAll();
     }
 
-    public List<Dado> buscaEntreDatas(List<String> datas) {
+    public List<Dado> buscaEntreDatas(String[] datas) {
 
-        String[] dataInicial = datas.get(0).split("-");
-        String[] dataFinal = datas.get(1).split("-");
-
-        int diaInicial = Integer.parseInt(dataInicial[2]);
-        int diaFinal = Integer.parseInt(dataFinal[2]);
+        int diaInicial = Integer.parseInt(datas[0]);
+        int diaFinal = Integer.parseInt(datas[1]);
 
         List<Dado> dados = dadoRepository.findAll();
+        Collections.sort(dados, new ComparadorPorData());
+
         List<Dado> retorno = new ArrayList<>();
         for(Dado dado : dados)
-            if(dado.getData().getTime().getDay() >= diaInicial && dado.getData().getTime().getDay() <= diaFinal)
+            if(dado.getData().get(Calendar.DAY_OF_MONTH) >= diaInicial && dado.getData().get(Calendar.DAY_OF_MONTH) <= diaFinal)
                 retorno.add(dado);
 
         return retorno;
