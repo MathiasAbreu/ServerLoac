@@ -35,9 +35,9 @@ public class DadoController {
         return new ResponseEntity(dadoService.buscaDados(),HttpStatus.OK);
     }
 
-    @GetMapping("buscaDatas/{dataInicio_dataFinal}")
-    public ResponseEntity buscaEntreDatas(@RequestParam String dataInicio_dataFinal) {
+    @GetMapping("buscaDatas/{data}/")
+    public ResponseEntity buscaEntreDatas(@PathVariable String data) {
 
-        return new ResponseEntity(dadoService.buscaEntreDatas(dataInicio_dataFinal.split("_")),HttpStatus.OK);
+        return new ResponseEntity(dadoService.buscaEntreDatas(data.split("_")),HttpStatus.OK);
     }
 }
